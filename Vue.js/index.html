@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <!-- 例えばaタグの中のhrefはhref属性と呼ばれるものだが、
+  Vue.jsの専用の属性のことをディレクティブと呼ぶ -->
+  <div id="app">
+    <!-- 下の二つは同じ物が表示される -->
+    <!-- 一度描画されたら後から変更されたくない場合、v-onceというディレクティブを使用する -->
+    <p v-once>{{message}}</p>
+    <p v-text="message"></p>
+    <p>{{sayHi()}}</p>
+    <!-- html: "<h1>h1です<h1>"このデータをHTMLとして表示する場合、v-htmlディレクティブを使用する -->
+    <!-- クロスサイトスクリプティングという脆弱性がある
+    悪意のあるユーザにデータを盗み見るようなコードを書かれた場合、情報の流出の恐れがある -->
+    <!-- v-htmlにはユーザから提供されたコンテンツを絶対に置かないこと   -->
+    <div v-html="html"></div>
+    <!-- v-bindは属性に対してデータを指定するためのディレクティブ -->
+    <a v-bind:href="url">Google</a>
+    <!-- 下記のようにv-bindは:で省略可能 -->
+    <a :href="url">Google</a>
+    <!-- 下記のようにhref属性を動的に変化させることも可能 -->
+    <a :[attribute]="url">Google</a>
+    <a :href="urlTwitter" :id="number">Twitter</a>
+    <!-- v-bindをオブジェクト形式で書くことも可能 -->
+    <a v-bind="{href:urlTwitter, id:number}">Twitter</a>
+    <a v-bind="twitterObject">Twitter</a>
+    <!-- v-onディレクティブによってイベントを制御できる -->
+    <p>現在{{count}}回クリックされています</p>
+    <button v-on:click="countUp">カウントアップ</button>
+    <!-- イベントオブジェクトとはイベントの情報が入ったオブジェクトのこと -->
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
