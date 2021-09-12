@@ -34,8 +34,37 @@
     <a v-bind="twitterObject">Twitter</a>
     <!-- v-onディレクティブによってイベントを制御できる -->
     <p>現在{{count}}回クリックされています</p>
-    <button v-on:click="countUp">カウントアップ</button>
+    <button v-on:click="countUp(2)">カウントアップ</button>
     <!-- イベントオブジェクトとはイベントの情報が入ったオブジェクトのこと -->
+    <!-- イベントオブジェクトの他に引数を取りたい場合は、$eventを指定してあげる -->
+    <p v-on:mousemove="changeMousePosition(3, $event)">マウスを載せてください
+      <!-- <span> -->
+      <!-- noEventメソッド内でイベントオブジェクトに対してstopPropagationを実行する -->
+      <span v-on:mousemove="noEvent">  
+        反応させないでください１
+      </span>
+      <!-- .stopによって上記の動作と同様になる -->
+      <span v-on:mousemove.stop>  
+        反応させないでください２
+      </span>
+    </p>
+    <!-- aタグのリンクに飛ぶという動作をprevent(妨げる) -->
+    <a v-on:click="noEventPrev" href="https://google.com">Google</a>
+    <!-- .preventによって上記の動作と同様になる -->
+    <a v-on:click.prevent href="https://google.com">Google</a>
+    <p>X:{{x}}, Y:{{y}}</p>
+
+    <!-- イベント修飾子 -->
+    <!-- stopとpreventについて -->
+
+    <!-- キー修飾子 -->
+    <!-- keyupはキーを押して離した瞬間に動作するという意味 -->
+    <!-- .enterを修飾することでキーを指定することが可能 -->
+    <input type="text" v-on:keyup.enter="myAlert">
+
+    <!-- v-onディレクティブの省略記法@ -->
+    <p>現在{{count}}回クリックされています</p>
+    <button @click="countUp(2)">カウントアップ</button>
   </div>
   <script src="main.js"></script>
 </body>
