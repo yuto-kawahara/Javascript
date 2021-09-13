@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <title>Document</title>
+</head>
+<body>
+  <!-- Vueインスタンスは複数使用できるが非推奨 -->
+  <div id="app1">
+    <p>{{message}}</p>
+    <button @click="message='ボタンから変更'">変更</button>
+  </div>
+  <div id="app2">
+  </div>
+  <div id="app3">
+  </div>
+  <!-- Vueインスタンスのライフサイクルフックのタイミング -->
+  <div id="app4">
+    <h1>Hello{{name}}</h1>
+    <button @click="name= '舞茸'">名前を変更</button>
+    <button @click="destroy">インスタンスを破壊</button>
+    
+    <hello></hello>
+    <hello></hello>
+    <hello></hello>
+    <hello></hello>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
