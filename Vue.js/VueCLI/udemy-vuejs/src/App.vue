@@ -82,7 +82,7 @@ export default {
     LikeHeader,
     About,
     Home,
-    EventTitle
+    EventTitle,
   },
   methods: {
     incrementNumber(value) {

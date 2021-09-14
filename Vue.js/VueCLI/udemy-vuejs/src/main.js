@@ -35,6 +35,15 @@ Vue.component("LikeNumber", LikeNumber);
 //     el.style.boxShadow = "0 2px 5px rgba(0,0,0,0.8)";
 //   }
 // })
+Vue.filter("upperCase",function(value){
+  return value.toUpperCase();
+});
+//グローバルなmixinはすべてのコンポーネントに適用されるので注意
+// Vue.mixin({
+//   created() {
+//     console.log("global mixin");
+//   }
+// });
 
 new Vue({
   render: h => h(App),
