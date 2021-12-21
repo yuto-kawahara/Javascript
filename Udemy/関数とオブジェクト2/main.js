@@ -1,3 +1,4 @@
+'use strict';
 // function Person(name, age) {
 //   this.name = name;
 //   this.age = age;
@@ -177,15 +178,159 @@
 
 // taro.greet();
 
+// class Person {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   hello(){
+//     console.log("hello " + this.name);
+//   }
+// }
+
+// const bob = new Person("Bob", 23);
+// console.log(bob);
+
+// class Person{
+//   constructor(name, age){
+//     this.name = name;
+//     this.age = age;
+//   }
+//   hello(){
+//     console.log("hello " + this.name);
+//   }
+// }
+
+// function Person(name, age) {
+//   this.name = name;
+//   this.age = age;
+// }
+
+// Person.prototype.hello = function(){
+//   console.log("hello " + this.name);
+// }
+
+// function Japanese(name, age){
+//   Person.call(this, name, age);
+// }
+// ある関数のprototypeを別の関数のprototypeにコピーすることをプロトタイプ継承と呼ぶ
+// Japanese.prototype = Object.create(Person.prototype);
+
+// Personのプロトタイプとは独立して存在しているので継承元のprototypeは影響を受けない
+// Japanese.prototype.greet = function(){
+//   console.log("konnitiwa " + this.name);
+// }
+
+// const taro = new Japanese("Taro", 23);
+// console.log(taro);
+
+// // taro.greet();
+
+// class Japanese extends Person{
+//   constructor(name, age, gender){
+//     super(name,age);
+//     this.gender = gender
+//   }
+//   hello(){
+//     console.log("konnitiwa " + this.name);
+//   }
+//   bye(){
+//     console.log("sayonara " + this.name);
+//   }
+
+// }
+
+// const taro = new Japanese("taro", 23, "male");
+// console.log(taro);
+
+
+// const American = {
+//   hello(){
+//     console.log("hello " + this.name);
+//   }
+// }
+
+// const bob = {
+//   name: "Bob",
+//   // hello(){
+//   //   console.log("hello " + this.name);
+//   // }
+// }
+
+// Object.setPrototypeOf(bob, American);
+// bob.hello();
+// console.log(bob);
+
+// const arry = new Array(1,2,3,4);
+
+// const a = new String("hello");
+// // 変数に値を代入するときには、その値を暗黙的にラッパーオブジェクトのプリミティブ値として内包する
+// console.log(a.toUpperCase());
+
+// const s = Symbol();
+// console.log(s);
+
+// // const obj = {
+// //   prop: 0
+// // }
+
+// const obj = {}
+// // defineで値を定義した場合には他のdescriptorはfalseになる
+// // configurableは設定の変更の可否
+// // enumerableは
+// // writableは値の書き換えの可否
+// // オブジェクトにはdescriptotと呼ばれる設定値があるため、この設定値によって挙動が変わってくる
+// Object.defineProperty(obj, "prop", {
+//   configurable: true,
+//   value: 0,
+//   writable: true
+// })
+// delete obj.prop;
+// // obj.prop = 1;
+
+// const descriptor = Object.getOwnPropertyDescriptor(obj, "prop");
+// console.log(descriptor);
+
+// function Person1(name, age){
+//   this._name = name;
+//   this._age = age;
+// }
+
+// Object.defineProperty(Person1.prototype, "name", {
+//   get: function(){
+//     return this._name;
+//   },
+//   set: function(val){
+//     this._name = val;
+//   }
+// });
+
+// const p1 = new Person1("Bob", 23);
+// console.log(p1.name);
+
 class Person {
-  constructor(name, age) {
+  constructor(name, age){
     this.name = name;
     this.age = age;
   }
-  hello(){
-    console.log("hello " + this.name);
+  hello(person){
+    console.log(`${this.name} says hello ${person}`)
+    return this;
+  }
+
+  introduce(){
+    console.log(`Hi, I'm ${this.name}, ${this.age} years old.`)
+    return this;
+  }
+
+  bye(person){
+    console.log(`Goodbye, ${person.name}`);
   }
 }
 
 const bob = new Person("Bob", 23);
-console.log(bob);
+const tim = new Person("Tim", 33);
+
+bob.hello(tim)
+  .introduce()
+  .bye(tim);
