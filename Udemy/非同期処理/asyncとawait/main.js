@@ -1,27 +1,25 @@
-new Promise(function (resolve, reject) {
-  console.log("promise");
-  resolve("Hello");
-});
-
 function sleep(val) {
   return new Promise(function (resolve) {
     setTimeout(function () {
       console.log(val++);
       resolve(val);
-    }, val * 500);
+    }, 1000);
   });
 }
 
-Promise.all([sleep(2), sleep(3), sleep(4)]);
+// awaitはasyncの関数コンテキスト内でしか使用できない
+async function init() {
+  let val = await sleep(0);
+  val = await sleep(val);
+  val = await sleep(val);
+  val = await sleep(val);
+  val = await sleep(val);
+  console.log(val);
+}
 
-// allSettledではrejectされた時に、catchに処理が飛ばない
-Promise.allSettled([sleep(2), sleep(3), sleep(4)]).then((data) => {
-  console.log(data);
-});
+init();
+
 // sleep(0)
-//   .then((val) => {
-//     return sleep(val);
-//   })
 //   .then(function (val) {
 //     return sleep(val);
 //   })
