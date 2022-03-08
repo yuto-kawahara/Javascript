@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.8/push.min.js"
+      integrity="sha512-eiqtDDb4GUVCSqOSOTz/s/eiU4B31GrdSb17aPAA4Lv/Cjc8o+hnDvuNkgXhSI5yHuDvYkuojMaQmrB5JB31XQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div><h1>ブラウザでプッシュ通知を実装</h1></div>
+    <div>
+      <input
+        type="button"
+        id="push"
+        onclick="return push()"
+        value="クリックするとプッシュ通知が送られます。"
+      />
+    </div>
+  </body>
+  <script>
+    function push() {
+      const notification = new Notification("New Message incoming", {
+        body: "Hi there. How are you doing?",
+      });
+    }
+  </script>
+</html>
